@@ -347,3 +347,10 @@ For font installation, color-scheme changes, light/dark theming, or the `isolate
 Use `git status` / `git diff` to review changes and `git log` to learn project conventions. If you make a mistake, `git checkout` restores files.
 
 **Always commit when you are finished.** Non-negotiable — every completed task ends with a commit. Don't wait for the user to ask.
+
+## Cursor Cloud specific instructions
+
+- **Toolchain:** Node.js 22, matching `.gitlab-ci.yml` and `.github/workflows/deploy.yml`. The default Cloud Agent image already has Node 22 and npm on the login-shell `PATH`. Install dependencies with `npm ci` (lockfile). Do not upgrade npm or rewrite `package-lock.json` during setup.
+- **Dev server:** Vite binds `::` port **8080** (`vite.config.ts`). Start it with `npx vite --host :: --port 8080` from the repo root. `npm run dev` runs `npm i` before Vite, so it is the wrong command for a boot script.
+- **Checks:** `npm run test` is the full script (`tsc --noEmit`, `eslint`, `vitest run`, `vite build`). On current `main`, ESLint exits with pre-existing errors in `index.html`, `src/hooks/useIndexStats.ts`, `src/lib/sip01-utils.ts`, and `src/pages/ExplorerPage.tsx`, so that script stops before Vitest and the production build. `npx tsc --noEmit`, `npx vitest run`, and `npx vite build` each succeed on their own.
+- **Product check:** Open `/explorer`. The d-tag calculator’s default input must normalize to `https://example.com/page?a=1&b=2` with d tag `widx:f68176b3eb966bd682c3c6eadcc5fe44` and show that it matches the spec §13 test vector. `https://example.com/page` must produce `widx:3641c5f2274c5471278ab5bf1df6d185`. `/dashboard` reads live kind 39697 events from the app relay list and needs outbound `wss`.
