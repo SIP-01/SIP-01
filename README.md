@@ -64,7 +64,7 @@ Every hash in this README is real and reproducible — see
 
 | Document | Contents |
 |---|---|
-| **[`public/spec/SIP-01.md`](public/spec/SIP-01.md)** | The full, submission-ready specification (v1.2), incl. the §20.1 NIP dependency table |
+| **[`public/spec/SIP-01.md`](public/spec/SIP-01.md)** | The full, submission-ready specification (v1.3; wire schema remains v=1), incl. the §20.1 NIP dependency table |
 | **[`docs/IMPLEMENTATION-GUIDE.md`](docs/IMPLEMENTATION-GUIDE.md)** | Integration guide: publish, consume, or relay the index |
 | **[`NIP.md`](NIP.md)** | Schema summary (repo convention) |
 | Site `/dashboard` | Live public index stats — observations, documents, indexers, per-software family cards (Crawlstr / indexstr), crawler heartbeats (both), per-relay coverage (reads the app relay list — default: the union of the Crawlstr + indexstr publish pools, the NIP-50 search relays, and a general fallback) |
