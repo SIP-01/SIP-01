@@ -26,12 +26,26 @@ public metadata."*
 - `x` = `sha256(title + "\n" + description)` — content-agreement hash.
 - `v` = `"1"` — schema version.
 - `content` = `{ title, description?, image? }` JSON.
-- Modularity: optional core tags (`t`, `l`, `published`, `source`) plus a
-  registered extension-tag registry (`type`, `platform`, `category`,
-  `network`, `country`, `mime`) with an `x-` prefix rule for experiments.
+- Modularity: optional core tags (`t`, `l`, `published`, `source`) plus
+  registered extension tags (`type`, `platform`, `category`, `network`,
+  `country`, `mime`, `role`, repeatable `proto`) with an `x-` prefix rule
+  for experiments. The v1.3 `role`/`proto` tags are optional; older readers
+  may ignore them without changing kind-39697 interpretation.
 
 All events carry an `alt` tag with a human-readable description
 ("Web index observation: …").
+
+
+## Optional capability companion
+
+ORBSTR defines a separate, draft capability-announcement profile at kind
+**39698**. It is not a second kind in the SIP-01 web-observation schema and
+does not change kind 39697 or its `v="1"` wire schema. A kind-39697 service
+page may point to a kind-39698 listing with a standard NIP-01 `a` coordinate;
+role/proto hints on the web observation itself remain optional. Capability
+announcements describe provider claims; task execution and payment are out
+of scope. See [the companion profile](docs/CAPABILITY-DISCOVERY.md).
+
 
 ## This site
 
